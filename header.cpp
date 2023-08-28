@@ -133,9 +133,9 @@ void textSplitterTask(string text2Split) {
 //        }
     }
     cout << "text 2 split final worker lexem --> " << text2Split << endl;
-    cout << blah-1 << endl;
+    cout << blah - 1 << endl;
 
-    arrayOfStructifiedTasks[structifiedCount].attemptedWorkers[blah-1] = text2SplitIntegerised;
+    arrayOfStructifiedTasks[structifiedCount].attemptedWorkers[blah - 1] = text2SplitIntegerised;
 
 
 //    arrayOfStructifiedTasks[structifiedCount].attemptedWorkers[blah+1] = std::stoi(text2Split);
@@ -242,8 +242,8 @@ taskStructure getTaskById(long targetId, taskStructure structifiedTasks[]) {
             for (int iter = 0; iter < 20; iter++) {
                 cout << "inside iter --> Array of Structified Tasks - Task Workers from new getter ~~~> "
                      << arrayOfStructifiedTasks[position].attemptedWorkers[iter] << endl;
-              if(arrayOfStructifiedTasks[position].attemptedWorkers[iter] == -1){
-              }
+                if (arrayOfStructifiedTasks[position].attemptedWorkers[iter] == -1) {
+                }
 
             }
             cout << "X-X-X-X-X-X-X-X-X-X-X-X-X" << endl;
@@ -251,19 +251,30 @@ taskStructure getTaskById(long targetId, taskStructure structifiedTasks[]) {
     }
     return structifiedTasks[0];
 }
+//
+//void printOut(taskStructure tasks[]) {
+//    cout << "PRINT OUT FUNCTION"<< endl;
+//    int len = *(&tasks + 1) - tasks;
+//    cout << "size -->    " << len << endl;
+//    for (int i = 0; i <= 10; i++) {
+//        printTask(tasks[i]);
+//    }
+//    cout << "PRINT OUT FUNCTION"<< endl;
+//}
 
-void printOut(taskStructure tasks[]) {
-    int len = *(&tasks + 1) - tasks;
-    cout << "size -->    " << len << endl;
-    for (int i = 0; i <= 10; i++) {
-        printTask(tasks[i]);
+void printTask(int id) {
+    cout << "START Print from printTask()" << endl;
+    cout << arrayOfStructifiedTasks[id].getTaskId() << endl;
+    cout << arrayOfStructifiedTasks[id].getDescription() << endl;
+    cout << arrayOfStructifiedTasks[id].getUncertainty() << endl;
+    cout << arrayOfStructifiedTasks[id].getDifficulty() << endl;
+    for (int iter = 0; iter < 20; iter++) {
+        if (arrayOfStructifiedTasks[id].attemptedWorkers[iter] == -1) {
+        } else {
+            cout << arrayOfStructifiedTasks[id].attemptedWorkers[iter] << endl;
+        }
+
     }
+    cout << "END Print from printTask()" << endl;
 }
 
-void printTask(taskStructure currentTask) {
-    cout << "id -> " << currentTask.taskId;
-    cout << " description -> " << currentTask.description;
-    cout << " uncert -> " << currentTask.uncertainty;
-    cout << " diffic -> " << currentTask.difficulty;
-    cout << " first worker -> " << currentTask.attemptedWorkers[0] << endl;
-}

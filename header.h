@@ -148,7 +148,7 @@ void calculatePerformanceScore();
 
 void outputToFile();
 
-void printTask(taskStructure task);
+void printTask(int id);
 
 void tokenToString(string fieldStorage);
 

@@ -25,8 +25,11 @@ int main() {
     readFromTaskFile();
     cout << "Total Tasks --> " << totalTasks << endl;
     cout << "Total Workers --> " << totalWorkers << endl;
-    printOut(structifiedTasks);
-    getTaskById(2, structifiedTasks);
+//    printOut(structifiedTasks);
+    printTask(1);
+//    getTaskById(2, structifiedTasks);
+
+
 
 //readFromWorkerFile();
 //getNextTask();

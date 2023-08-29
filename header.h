@@ -86,6 +86,18 @@ struct taskStructure {
         return attemptedWorkers;
     }
 
+    int getWorkerCount() const {
+        int count = 0;
+        for(int m = 0; m <20; m++){
+            if(attemptedWorkers[m] != -1){
+                count++;
+            }else{
+
+            }
+        }
+        return count;
+    }
+
 //    int getAllTaskWorkers() const {
 //        for (int iter = 0; iter <= 20; iter++) {
 //            return attemptedWorkers[iter];
@@ -152,6 +164,7 @@ void printTask(int id);
 
 void tokenToString(string fieldStorage);
 
-void printToOutputFile(string textToPut, ofstream& file);
+void printToOutputFile(string textToPut, ofstream &file, bool newLine);
+long getWorkerByWorkerId(long id);
 
 

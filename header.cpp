@@ -17,6 +17,9 @@ using std::cerr;
 int totalTasks = 0;
 int totalWorkers = 0;
 int structifiedCount = 0;
+const string THICK_SEPERATOR = "====================";
+const string REGULAR_SEPERATOR = "--------------------";
+const string THIN_SEPERATOR = "- - - - - - - - - - - - - - - - ";
 workerStructure structifiedWorkers[20];
 taskStructure arrayOfStructifiedTasks[20];
 
@@ -184,9 +187,10 @@ void workerStructify(string workerSplitText) {
 
 }
 
-void readFromTaskFile() {
+void readFromTaskFile(ofstream &outfile) {
     ifstream readWorker("Workers.txt");
     ifstream readTasks("Tasks.txt");
+
     std::string myText;
     std::string myText2;
 
@@ -196,18 +200,20 @@ void readFromTaskFile() {
         textSplitterTask(myText);
     }
     readTasks.close();
+    printToOutputFile("Tasks.txt read successfully \n", outfile);
 
     while (getline(readWorker, myText2)) {
         lineCounter++;
         workerStructify(myText2);
     }
     readWorker.close();
+    printToOutputFile("Workers.txt read successfully \n", outfile);
 
 };
 
-void printer(string printFlag) {
-
-};
+//void printer(string printFlag) {
+//
+//};
 
 taskStructure getTaskById(long targetId, taskStructure structifiedTasks[]) {
 
@@ -276,5 +282,9 @@ void printTask(int id) {
 
     }
     cout << "END Print from printTask()" << endl;
+}
+
+void printToOutputFile(string insertToFile, ofstream& file){
+    file << insertToFile;
 }
 

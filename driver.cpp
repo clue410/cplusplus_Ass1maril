@@ -16,18 +16,25 @@ using std::cerr;
 struct taskStructure;
 struct workerStructure;
 
+
 int main() {
     int currentTaskNumber = 1;
+    ofstream outfile;
+    outfile.open("Outfile.txt");
     wipeArrayOfTasks();
     string taskIdTarget;
     taskStructure structifiedTasks[totalTasks];
     workerStructure structifiedWorkers[totalWorkers];
-    readFromTaskFile();
+    readFromTaskFile(outfile);
     cout << "Total Tasks --> " << totalTasks << endl;
     cout << "Total Workers --> " << totalWorkers << endl;
 //    printOut(structifiedTasks);
     printTask(1);
+
+//    printToOutputFile("5", outfile);
 //    getTaskById(2, structifiedTasks);
+
+
 
 
 

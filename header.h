@@ -86,11 +86,11 @@ struct taskStructure {
         return attemptedWorkers;
     }
 
-    int getAllTaskWorkers() const {
-        for (int iter = 0; iter <= 20; iter++) {
-            return attemptedWorkers[iter];
-        }
-    }
+//    int getAllTaskWorkers() const {
+//        for (int iter = 0; iter <= 20; iter++) {
+//            return attemptedWorkers[iter];
+//        }
+//    }
 
     void setTaskId(long taskId) {
         taskStructure::taskId = taskId;
@@ -118,7 +118,7 @@ struct taskStructure {
 };
 
 
-void readFromTaskFile();
+void readFromTaskFile(fstream outfile);
 
 void printer();
 
@@ -152,5 +152,6 @@ void printTask(int id);
 
 void tokenToString(string fieldStorage);
 
+void printToOutputFile(string textToPut, ofstream& file);
 
 

@@ -88,21 +88,15 @@ struct taskStructure {
 
     int getWorkerCount() const {
         int count = 0;
-        for(int m = 0; m <20; m++){
-            if(attemptedWorkers[m] != -1){
+        for (int m = 0; m < 20; m++) {
+            if (attemptedWorkers[m] != -1) {
                 count++;
-            }else{
+            } else {
 
             }
         }
         return count;
     }
-
-//    int getAllTaskWorkers() const {
-//        for (int iter = 0; iter <= 20; iter++) {
-//            return attemptedWorkers[iter];
-//        }
-//    }
 
     void setTaskId(long taskId) {
         taskStructure::taskId = taskId;
@@ -119,10 +113,6 @@ struct taskStructure {
     void setDifficulty(int difficulty) {
         taskStructure::difficulty = difficulty;
     }
-
-    //new setter for workers
-
-
     taskStructure(long taskId, const string &description, int uncertainty, int difficulty) : taskId(taskId),
                                                                                              description(description),
                                                                                              uncertainty(uncertainty),
@@ -165,6 +155,7 @@ void printTask(int id);
 void tokenToString(string fieldStorage);
 
 void printToOutputFile(string textToPut, ofstream &file, bool newLine);
+
 long getWorkerByWorkerId(long id);
 
 

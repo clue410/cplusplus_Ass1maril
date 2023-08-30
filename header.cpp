@@ -240,3 +240,16 @@ void printWorkerStats(int currentTaskNumber,long foundWorkerId, int a, ofstream 
     printToOutputFile("Trial : Worker   -> " +std::to_string(arrayOfStructifiedTasks[currentTaskNumber].attemptedWorkers[a]) + " (" +arrayOfstructifiedWorkers[foundWorkerId].getName() + ")", outfile, true);
     printToOutputFile(arrayOfstructifiedWorkers[foundWorkerId].getName() + "'s (" +std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) +") average performance is " + std::to_string(averageScore), outfile, true);
 };
+
+//int workerSuccessOrFailure(){
+//    if (averageScore <= PASSING_SCORE) {
+//        printToOutputFile("Worker " + std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) + " fails Task " +std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getTaskId()), outfile, true);
+//        if (a == arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount() - 1) {
+//            printToOutputFile(" !! Task Assignment failed !! ", outfile, true);
+//        }
+//    } else {
+//        printToOutputFile("Assignment of Task " + std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getTaskId()) +" to Worker " + std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) +" is successful", outfile, true);
+//        a = arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount();
+//    }
+//    return a;
+//};

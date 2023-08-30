@@ -1,11 +1,6 @@
-//
-// Created by Marilena on 21/8/2023.
-//
 #include "header.cpp"
 #include<iostream>
 #include <random>
-#include<fstream>
-
 using std::ofstream; //write
 using std::ifstream; //read
 using std::array;
@@ -13,7 +8,6 @@ using std::cout;
 using std::endl;
 using std::cin;
 using std::cerr;
-
 struct taskStructure;
 struct workerStructure;
 const int PASSING_SCORE = 50;
@@ -25,7 +19,7 @@ int main() {
     outfile.open("Outfile.txt");
     wipeArraysOfStructures();
     string taskIdTarget;
-    printToOutputFile("Pre-Logic status check \n" + REGULAR_SEPERATOR, outfile, false);
+    printToOutputFile("Pre-Logic status check \n" + REGULAR_SEPERATOR, outfile, true);
     readFromTaskFile(outfile);
     checkFileAndOutput(outfile);
 
@@ -44,7 +38,8 @@ int main() {
                 printToOutputFile("-----", outfile, true);
             }
             printWorkerStats(currentTaskNumber,foundWorkerId,a, outfile,averageScore);
-            if (averageScore <= PASSING_SCORE) {
+//            a = workerSuccessOrFailure(a,PASSING_SCORE, averageScore,currentTaskNumber,foundWorkerId,outfile);
+                        if (averageScore <= PASSING_SCORE) {
                 printToOutputFile("Worker " + std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) + " fails Task " +std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getTaskId()), outfile, true);
                 if (a == arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount() - 1) {
                     printToOutputFile(" !! Task Assignment failed !! ", outfile, true);

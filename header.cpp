@@ -206,7 +206,7 @@ int calculateTaskStandardDeviation(int uncertainty, int variability) {
     int out =  (uncertainty + variability);
     return out;
 };
-int calculateAveragePerformance(int mean, int standardDeviation, ofstream &outfile,int a, int currentTaskNumber, long foundWorkerId,int passingScore,int  maxAttempts){
+int calculateAveragePerformance(int mean, int standardDeviation,int  maxAttempts){
     unsigned seed = chrono::system_clock::now().time_since_epoch().count();
     default_random_engine generator(seed);
     normal_distribution<double> distribution(mean, standardDeviation);
@@ -215,26 +215,28 @@ int calculateAveragePerformance(int mean, int standardDeviation, ofstream &outfi
         scores = scores + distribution(generator);
     }
     int averageScore = scores / maxAttempts;
-
     return averageScore;
-//    if (a > 0) {
-//        printToOutputFile("-----", outfile, true);
-//    }
-//
-//    printToOutputFile("Trial : Worker   -> " +std::to_string(arrayOfStructifiedTasks[currentTaskNumber].attemptedWorkers[a]) + " (" +arrayOfstructifiedWorkers[foundWorkerId].getName() + ")", outfile, true);
-//    printToOutputFile(arrayOfstructifiedWorkers[foundWorkerId].getName() + "'s (" +std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) +") average performance is " + std::to_string(averageScore), outfile, true);
-//    if (averageScore <= passingScore) {
-//        printToOutputFile(
-//                "Worker " + std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) + " fails Task " +std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getTaskId()), outfile, true);
-//        if (a == arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount() - 1) {
-//            printToOutputFile(" !! Task Assignment failed !! ", outfile, true);
-//        }
-//    } else {
-//        printToOutputFile(
-//                "Assignment of Task " + std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getTaskId()) +" to Worker " + std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) +" is successful", outfile, true);
-////        return;
-//
-//        a = arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount();
-//    }
+};
+void printTaskStats(int currentTaskNumber, ofstream &outfile){
+    string workersStringed;
+    for (int l = 0; l < arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount(); l++) {
+        if (l == arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount() - 1) {
+            workersStringed = workersStringed + std::to_string(arrayOfStructifiedTasks[currentTaskNumber].attemptedWorkers[l]);
+        } else {
+            workersStringed = workersStringed + std::to_string(arrayOfStructifiedTasks[currentTaskNumber].attemptedWorkers[l]) + ",";
+        }
+    }
+    printToOutputFile(THICK_SEPERATOR + " NEW TASK " + THICK_SEPERATOR, outfile, true);
+    printToOutputFile("Processing Task id : " + std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getTaskId()),outfile, true);
+    printToOutputFile("Description        : " + arrayOfStructifiedTasks[currentTaskNumber].getDescription(),outfile, true);
+    printToOutputFile("Uncertainty        : " + std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getUncertainty()),outfile, true);
+    printToOutputFile("Difficulty         : " + std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getDifficulty()),outfile, true);
+    printToOutputFile("Worker count       : " + std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount()),outfile, true);
+    printToOutputFile("Workers            : " + workersStringed, outfile, true);
+    printToOutputFile(THIN_SEPERATOR + " START TRIAL " + THIN_SEPERATOR, outfile, true);
 
+};
+void printWorkerStats(int currentTaskNumber,long foundWorkerId, int a, ofstream &outfile, int averageScore){
+    printToOutputFile("Trial : Worker   -> " +std::to_string(arrayOfStructifiedTasks[currentTaskNumber].attemptedWorkers[a]) + " (" +arrayOfstructifiedWorkers[foundWorkerId].getName() + ")", outfile, true);
+    printToOutputFile(arrayOfstructifiedWorkers[foundWorkerId].getName() + "'s (" +std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) +") average performance is " + std::to_string(averageScore), outfile, true);
 };

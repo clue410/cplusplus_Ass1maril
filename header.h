@@ -155,13 +155,16 @@ long getWorkerByWorkerId(long id);
 
 void checkFileAndOutput(ofstream &file);
 
-int calculateAveragePerformance(int mean, int standardDeviation, ofstream &outfile, int position,int currentTask, long foundWorkerI,int  PASSING_SCORE, int MAX_ATTEMPTS);
+int calculateAveragePerformance(int mean, int standardDeviation,int MAX_ATTEMPTS);
 
 void calculatePerformanceScore();
 
 int calculateMean(int ability, int difficulty);
 
 int calculateTaskStandardDeviation(int uncertainty, int variability);
+
+void printTaskStats(int currentTaskNumber, ofstream &outfile);
+void printWorkerStats(int currentTaskNumber,long foundWorkerId, int a, ofstream &outfile, int averageScore);
 
 
 

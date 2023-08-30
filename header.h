@@ -138,15 +138,9 @@ void getNextTask();
 
 void getNextWorker();
 
-void calculateMean();
-
-void calculateTaskStandardDeviation();
 
 void worker5Attempts();
 
-void calculateAveragePerformance();
-
-void calculatePerformanceScore();
 
 void outputToFile();
 
@@ -154,8 +148,20 @@ void printTask(int id);
 
 void tokenToString(string fieldStorage);
 
+
 void printToOutputFile(string textToPut, ofstream &file, bool newLine);
 
 long getWorkerByWorkerId(long id);
+
+void checkFileAndOutput(ofstream &file);
+
+int calculateAveragePerformance(int mean, int standardDeviation, ofstream &outfile, int position,int currentTask, long foundWorkerI,int  PASSING_SCORE, int MAX_ATTEMPTS);
+
+void calculatePerformanceScore();
+
+int calculateMean(int ability, int difficulty);
+
+int calculateTaskStandardDeviation(int uncertainty, int variability);
+
 
 

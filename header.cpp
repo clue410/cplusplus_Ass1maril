@@ -4,6 +4,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<array>
+#include <random>
 
 using std::ofstream; //write
 using std::ifstream; //read
@@ -131,6 +132,7 @@ void readFromTaskFile(ofstream &outfile) {
     }
     readWorker.close();
     printToOutputFile("Workers.txt read successfully", outfile, true);
+    printToOutputFile(REGULAR_SEPERATOR, outfile, true);
 
 };
 
@@ -165,11 +167,74 @@ void printToOutputFile(string insertToFile, ofstream &file, bool newLine) {
         file << insertToFile;
     }
 }
-long getWorkerByWorkerId(long idIn){
-    for(int q = 0; q <= totalWorkers; q++){
-        if(arrayOfstructifiedWorkers[q].workerId == idIn){
-            return arrayOfstructifiedWorkers[q].getWorkerId();
+
+long getWorkerByWorkerId(long idIn) {
+    long meow = -1;
+    for (int q = 0; q <= totalWorkers; q++) {
+        if (arrayOfstructifiedWorkers[q].workerId == idIn) {
+            meow = arrayOfstructifiedWorkers[q].getWorkerId();
+            return meow;
+        }else{
         }
     }
+    return meow;
 }
 
+void checkFileAndOutput(ofstream &outfile) {
+    if (totalTasks != 0 && totalWorkers != 0) {
+        string stringifiedTasks = std::to_string(totalTasks);
+        string stringifiedWorkers = std::to_string(totalWorkers);
+        printToOutputFile("Total Tasks populated | count : " + stringifiedTasks, outfile, true);
+        printToOutputFile("Total Workers populated | count : " + stringifiedWorkers, outfile, true);
+        printToOutputFile(THICK_SEPERATOR, outfile, true);
+    } else {
+        printToOutputFile("Tasks and Workers population failed", outfile, true);
+        printToOutputFile(THICK_SEPERATOR, outfile, true);
+    }
+    printToOutputFile(REGULAR_SEPERATOR, outfile, true);
+    printToOutputFile("BEGIN OUTSOURCING PROCESS", outfile, true);
+    printToOutputFile(REGULAR_SEPERATOR, outfile, true);
+};
+
+
+int calculateMean(int ability, int difficulty) {
+    int out = (ability-difficulty);
+    return out;
+};
+
+int calculateTaskStandardDeviation(int uncertainty, int variability) {
+    int out =  (uncertainty + variability);
+    return out;
+};
+int calculateAveragePerformance(int mean, int standardDeviation, ofstream &outfile,int a, int currentTaskNumber, long foundWorkerId,int passingScore,int  maxAttempts){
+    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+    default_random_engine generator(seed);
+    normal_distribution<double> distribution(mean, standardDeviation);
+    int scores = 0;
+    for (int attempts = 0; attempts <= maxAttempts; attempts++) {
+        scores = scores + distribution(generator);
+    }
+    int averageScore = scores / maxAttempts;
+
+    return averageScore;
+//    if (a > 0) {
+//        printToOutputFile("-----", outfile, true);
+//    }
+//
+//    printToOutputFile("Trial : Worker   -> " +std::to_string(arrayOfStructifiedTasks[currentTaskNumber].attemptedWorkers[a]) + " (" +arrayOfstructifiedWorkers[foundWorkerId].getName() + ")", outfile, true);
+//    printToOutputFile(arrayOfstructifiedWorkers[foundWorkerId].getName() + "'s (" +std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) +") average performance is " + std::to_string(averageScore), outfile, true);
+//    if (averageScore <= passingScore) {
+//        printToOutputFile(
+//                "Worker " + std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) + " fails Task " +std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getTaskId()), outfile, true);
+//        if (a == arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount() - 1) {
+//            printToOutputFile(" !! Task Assignment failed !! ", outfile, true);
+//        }
+//    } else {
+//        printToOutputFile(
+//                "Assignment of Task " + std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getTaskId()) +" to Worker " + std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) +" is successful", outfile, true);
+////        return;
+//
+//        a = arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount();
+//    }
+
+};

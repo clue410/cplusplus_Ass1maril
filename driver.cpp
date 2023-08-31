@@ -12,7 +12,6 @@ struct taskStructure;
 struct workerStructure;
 const int PASSING_SCORE = 50;
 const int MAX_ATTEMPTS = 5;
-
 int main() {
     int currentTaskNumber = 0;
     ofstream outfile;
@@ -22,7 +21,6 @@ int main() {
     printToOutputFile("Pre-Logic status check \n" + REGULAR_SEPERATOR, outfile, true);
     readFromTaskFile(outfile);
     checkFileAndOutput(outfile);
-
     while (currentTaskNumber <= totalTasks - 1) {
         printTaskStats(currentTaskNumber,outfile);
         for (int a = 0; a < arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount(); a++) {
@@ -30,19 +28,14 @@ int main() {
             int mean =  calculateMean(arrayOfstructifiedWorkers[foundWorkerId].getAbility(), arrayOfStructifiedTasks[currentTaskNumber].getDifficulty());
             int standardDeviation = calculateTaskStandardDeviation(arrayOfStructifiedTasks[currentTaskNumber].getUncertainty(), arrayOfstructifiedWorkers[foundWorkerId].variability);
             int averageScore = calculateAveragePerformance(mean,standardDeviation, MAX_ATTEMPTS);
-
-            unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-            default_random_engine generator(seed);
-            normal_distribution<double> distribution(mean, standardDeviation);
             if (a > 0) {
                 printToOutputFile("-----", outfile, true);
             }
             printWorkerStats(currentTaskNumber,foundWorkerId,a, outfile,averageScore);
-//            a = workerSuccessOrFailure(a,PASSING_SCORE, averageScore,currentTaskNumber,foundWorkerId,outfile);
-                        if (averageScore <= PASSING_SCORE) {
+            if (averageScore <= PASSING_SCORE) {
                 printToOutputFile("Worker " + std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) + " fails Task " +std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getTaskId()), outfile, true);
                 if (a == arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount() - 1) {
-                    printToOutputFile(" !! Task Assignment failed !! ", outfile, true);
+                    printToOutputFile(" !! Task Assignment for task "  +std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getTaskId()) + " has failed !! ", outfile, true);
                 }
             } else {
                 printToOutputFile("Assignment of Task " + std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getTaskId()) +" to Worker " + std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) +" is successful", outfile, true);

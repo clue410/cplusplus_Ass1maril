@@ -17,10 +17,6 @@ struct workerStructure {
         return name;
     }
 
-    int getVariability() const {
-        return variability;
-    }
-
     int getAbility() const {
         return ability;
     }
@@ -113,36 +109,6 @@ struct taskStructure {
                                                                                              difficulty(difficulty) {}
 };
 
-
-//void readFromTaskFile(fstream outfile);
-//
-//void printer();
-//
-//taskStructure getTaskById();
-//
-//void finalPrintOut();
-//
-//void readFromWorkerFile();
-//
-//void textSplitterTasks();
-//
-//void textSplitterWorker();
-//
-//void getNextTask();
-//
-//void getNextWorker();
-//
-//
-//void worker5Attempts();
-//
-//
-//void outputToFile();
-//
-//void printTask(int id);
-//
-//void tokenToString(string fieldStorage);
-
-
 void printToOutputFile(string textToPut, ofstream &file, bool newLine);
 
 long getWorkerByWorkerId(long id);
@@ -151,15 +117,14 @@ void checkFileAndOutput(ofstream &file);
 
 int calculateAveragePerformance(int mean, int standardDeviation,int MAX_ATTEMPTS);
 
-//void calculatePerformanceScore();
-
 int calculateMean(int ability, int difficulty);
 
 int calculateTaskStandardDeviation(int uncertainty, int variability);
 
 void printTaskStats(int currentTaskNumber, ofstream &outfile);
 void printWorkerStats(int currentTaskNumber,long foundWorkerId, int a, ofstream &outfile, int averageScore);
-//int workerSuccessOrFailure(int a, int passingScore, int averageScore, int currentTaskNumber, long foundWorkerId, ofstream &outfile);
+
+
 
 
 

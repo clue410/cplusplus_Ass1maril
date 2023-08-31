@@ -5,7 +5,6 @@
 #include<string.h>
 #include<array>
 #include <random>
-
 using std::ofstream; //write
 using std::ifstream; //read
 using std::string; //read
@@ -13,24 +12,20 @@ using std::cout;
 using std::endl;
 using std::cin;
 using std::cerr;
-
-
 int totalTasks = 0;
 int totalWorkers = 0;
-int structifiedCount = 0;
+int countStructified = 0;
 string THICK_SEPERATOR = "====================";
 string REGULAR_SEPERATOR = "--------------------";
 string THIN_SEPERATOR = "- - - - - - - - - - - - - - - - ";
 workerStructure arrayOfstructifiedWorkers[20];
 taskStructure arrayOfStructifiedTasks[20];
-
 void wipeArraysOfStructures() {
     for (int ia = 0; ia <= 20; ia++) {
         arrayOfStructifiedTasks[ia] = taskStructure();
         arrayOfstructifiedWorkers[ia] = workerStructure();
     }
 }
-
 void textSplitterTask(string text2Split) {
     int foundCommaCount = 0;
     int countPosition = 0;
@@ -45,7 +40,8 @@ void textSplitterTask(string text2Split) {
         fieldStorage[i] = "";
     }
     int lexemised = 0;
-    while ((foundCommaCount = text2Split.find(delimiter)) != std::string::npos) {
+    while ((foundCommaCount = text2Split.find(delimiter)) != -1) { //how. what
+//    while ((foundCommaCount = text2Split.find(delimiter)) != std::string::npos) {
         spliterised = text2Split.substr(0, foundCommaCount);
         fieldStorage[countPosition] = spliterised;
         countPosition++;
@@ -59,29 +55,23 @@ void textSplitterTask(string text2Split) {
     tokenToTask.setDescription(fieldStorage[1]);
     tokenToTask.setUncertainty(std::stoi(fieldStorage[2]));
     tokenToTask.setDifficulty(std::stoi(fieldStorage[3]));
-
-    arrayOfStructifiedTasks[structifiedCount].setTaskId(std::stoul(fieldStorage[0]));
-    arrayOfStructifiedTasks[structifiedCount].setDescription(fieldStorage[1]);
-    arrayOfStructifiedTasks[structifiedCount].setUncertainty(std::stoi(fieldStorage[2]));
-    arrayOfStructifiedTasks[structifiedCount].setDifficulty(std::stoi(fieldStorage[3]));
-//    int workerAmount = 0;
-//    int len = *(&arrayOfStructifiedTasks[structifiedCount].attemptedWorkers + 1) -
-//              arrayOfStructifiedTasks[structifiedCount].attemptedWorkers;
+    arrayOfStructifiedTasks[countStructified].setTaskId(std::stoul(fieldStorage[0]));
+    arrayOfStructifiedTasks[countStructified].setDescription(fieldStorage[1]);
+    arrayOfStructifiedTasks[countStructified].setUncertainty(std::stoi(fieldStorage[2]));
+    arrayOfStructifiedTasks[countStructified].setDifficulty(std::stoi(fieldStorage[3]));
     for (int meow = 0; meow < 20; meow++) {
-        arrayOfStructifiedTasks[structifiedCount].attemptedWorkers[meow] = -1;
+        arrayOfStructifiedTasks[countStructified].attemptedWorkers[meow] = -1;
     }
     int blah = 0;
     for (int m = 4; m < countPosition + 1; m++) {
         if (fieldStorage[m] != "") {
-            arrayOfStructifiedTasks[structifiedCount].attemptedWorkers[blah] = std::stoi(fieldStorage[m]);
+            arrayOfStructifiedTasks[countStructified].attemptedWorkers[blah] = std::stoi(fieldStorage[m]);
         }
-//        int addToARRAY = 1;
         blah++;
     }
-    arrayOfStructifiedTasks[structifiedCount].attemptedWorkers[blah - 1] = text2SplitIntegerised;
-    structifiedCount++;
+    arrayOfStructifiedTasks[countStructified].attemptedWorkers[blah - 1] = text2SplitIntegerised;
+    countStructified++;
 }
-
 void workerTextToStructureArray(string workerSplitText) {
     int foundCommaCount = 0;
     int countPosition = 0;
@@ -102,63 +92,37 @@ void workerTextToStructureArray(string workerSplitText) {
     tokenToTask.setName(fieldStorage[1]);
     tokenToTask.setVariability(std::stoi(fieldStorage[2]));
     tokenToTask.setAbility(std::stoi(workerSplitText));
-
     arrayOfstructifiedWorkers[totalWorkers].setWorkerId(std::stoul(fieldStorage[0]));
     arrayOfstructifiedWorkers[totalWorkers].setName(fieldStorage[1]);
     arrayOfstructifiedWorkers[totalWorkers].setVariability(std::stoi(fieldStorage[2]));
     arrayOfstructifiedWorkers[totalWorkers].setAbility(std::stoi(workerSplitText));
-
     totalWorkers++;
-
 }
-
 void readFromTaskFile(ofstream &outfile) {
     ifstream readWorker("Workers.txt");
     ifstream readTasks("Tasks.txt");
-
     std::string myText;
     std::string myText2;
-
     int lineCounter = 0;
     while (getline(readTasks, myText)) {
         lineCounter++;
         textSplitterTask(myText);
     }
-    readTasks.close();
+    if(readTasks.is_open()){
     printToOutputFile("Tasks.txt read successfully", outfile, true);
+    }
+    readTasks.close();
     while (getline(readWorker, myText2)) {
         lineCounter++;
         workerTextToStructureArray(myText2);
     }
-    readWorker.close();
+    if(readWorker.is_open()){
     printToOutputFile("Workers.txt read successfully", outfile, true);
+    }
+    readWorker.close();
     printToOutputFile(REGULAR_SEPERATOR, outfile, true);
 
 };
-
-//taskStructure getTaskById(long targetId, taskStructure structifiedTasks[]) {
-//
-//    for (int position = 0; position < totalTasks; position++) {
-//        if (arrayOfStructifiedTasks[position].getTaskId() == targetId) {
-//        } else {
-//            for (int iter = 0; iter < 20; iter++) {
-//                if (arrayOfStructifiedTasks[position].attemptedWorkers[iter] == -1) {
-//                }
-//
-//            }
-//        }
-//    }
-//    return structifiedTasks[0];
-//}
-
-//void printTask(int id) {
-//    for (int iter = 0; iter < 20; iter++) {
-//        if (arrayOfStructifiedTasks[id].attemptedWorkers[iter] == -1) {
-//        } else {
-//        }
-//
-//    }
-//}
 
 void printToOutputFile(string insertToFile, ofstream &file, bool newLine) {
     if (newLine == true) {
@@ -169,15 +133,15 @@ void printToOutputFile(string insertToFile, ofstream &file, bool newLine) {
 }
 
 long getWorkerByWorkerId(long idIn) {
-    long meow = -1;
+    long position = -1;
     for (int q = 0; q <= totalWorkers; q++) {
         if (arrayOfstructifiedWorkers[q].workerId == idIn) {
-            meow = arrayOfstructifiedWorkers[q].getWorkerId();
-            return meow;
+            position = arrayOfstructifiedWorkers[q].getWorkerId();
+            return position;
         }else{
         }
     }
-    return meow;
+    return position;
 }
 
 void checkFileAndOutput(ofstream &outfile) {
@@ -190,6 +154,7 @@ void checkFileAndOutput(ofstream &outfile) {
     } else {
         printToOutputFile("Tasks and Workers population failed", outfile, true);
         printToOutputFile(THICK_SEPERATOR, outfile, true);
+        //throw exception if within week 4 scopce sdovkjldj
     }
     printToOutputFile(REGULAR_SEPERATOR, outfile, true);
     printToOutputFile("BEGIN OUTSOURCING PROCESS", outfile, true);
@@ -216,6 +181,7 @@ int calculateAveragePerformance(int mean, int standardDeviation,int  maxAttempts
     }
     int averageScore = scores / maxAttempts;
     return averageScore;
+
 };
 void printTaskStats(int currentTaskNumber, ofstream &outfile){
     string workersStringed;
@@ -237,19 +203,7 @@ void printTaskStats(int currentTaskNumber, ofstream &outfile){
 
 };
 void printWorkerStats(int currentTaskNumber,long foundWorkerId, int a, ofstream &outfile, int averageScore){
-    printToOutputFile("Trial : Worker   -> " +std::to_string(arrayOfStructifiedTasks[currentTaskNumber].attemptedWorkers[a]) + " (" +arrayOfstructifiedWorkers[foundWorkerId].getName() + ")", outfile, true);
+    printToOutputFile("Trial : Worker -> " +std::to_string(arrayOfStructifiedTasks[currentTaskNumber].attemptedWorkers[a]) + " (" +arrayOfstructifiedWorkers[foundWorkerId].getName() + ")", outfile, true);
     printToOutputFile(arrayOfstructifiedWorkers[foundWorkerId].getName() + "'s (" +std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) +") average performance is " + std::to_string(averageScore), outfile, true);
 };
 
-//int workerSuccessOrFailure(){
-//    if (averageScore <= PASSING_SCORE) {
-//        printToOutputFile("Worker " + std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) + " fails Task " +std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getTaskId()), outfile, true);
-//        if (a == arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount() - 1) {
-//            printToOutputFile(" !! Task Assignment failed !! ", outfile, true);
-//        }
-//    } else {
-//        printToOutputFile("Assignment of Task " + std::to_string(arrayOfStructifiedTasks[currentTaskNumber].getTaskId()) +" to Worker " + std::to_string(arrayOfstructifiedWorkers[foundWorkerId].workerId) +" is successful", outfile, true);
-//        a = arrayOfStructifiedTasks[currentTaskNumber].getWorkerCount();
-//    }
-//    return a;
-//};

@@ -80,15 +80,11 @@ struct taskStructure { //task Structure
     }
 
     int getWorkerCount() const { //get amount of workers
-        int count = 0;
-        for (int m = 0; m < 20; m++) {
-            if (attemptedWorkers[m] != -1) {
-                count++;
-            } else {
-
-            }
+        int ndx = 0;
+        while(attemptedWorkers[ndx] != -1){
+            ndx++;
         }
-        return count;
+        return ndx;
     }
 
     void setTaskId(long taskId) {
@@ -120,7 +116,7 @@ void printToOutputFile(string textToPut, ofstream &file, bool newLine);
 
 long getWorkerByWorkerId(long id);
 
-void checkFileAndOutput(ofstream &file);
+void checkDataValidity(ofstream &outfile);
 
 int calculateAveragePerformance(int mean, int standardDeviation, int MAX_ATTEMPTS);
 
@@ -132,6 +128,7 @@ void printTaskStats(int currentTaskNumber, ofstream &outfile);
 
 void printWorkerStats(int currentTaskNumber, long foundWorkerId, int a, ofstream &outfile, int averageScore);
 
+void taskAssingment(ofstream &outfile);
 
 
 

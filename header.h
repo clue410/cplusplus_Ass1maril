@@ -3,7 +3,7 @@
 #endif //ADVPROGASSINGMENT1_HEADER_H
 using namespace std;
 
-struct workerStructure {
+struct workerStructure { //worker Structure
     long workerId;
     string name;
     int variability;
@@ -37,16 +37,18 @@ struct workerStructure {
         workerStructure::ability = ability;
     }
 
-    workerStructure() {
+    workerStructure() { //blank constructor
 
     }
 
-    workerStructure(long workerId, const string &name, int variability, int ability) : workerId(workerId), name(name),
-                                                                                       variability(variability),
-                                                                                       ability(ability) {}
+    workerStructure(long workerId, const string &name, int variability, int ability) :
+            workerId(workerId),
+            name(name), //full constructor
+            variability(variability),
+            ability(ability) {}
 };
 
-struct taskStructure {
+struct taskStructure { //task Structure
     taskStructure() {
 
     }
@@ -72,11 +74,12 @@ struct taskStructure {
     int getDifficulty() const {
         return difficulty;
     }
+
     const int *getAttemptedWorkers() const {
         return attemptedWorkers;
     }
 
-    int getWorkerCount() const {
+    int getWorkerCount() const { //get amount of workers
         int count = 0;
         for (int m = 0; m < 20; m++) {
             if (attemptedWorkers[m] != -1) {
@@ -103,11 +106,15 @@ struct taskStructure {
     void setDifficulty(int difficulty) {
         taskStructure::difficulty = difficulty;
     }
-    taskStructure(long taskId, const string &description, int uncertainty, int difficulty) : taskId(taskId),
-                                                                                             description(description),
-                                                                                             uncertainty(uncertainty),
-                                                                                             difficulty(difficulty) {}
+
+    taskStructure(long taskId, const string &description, int uncertainty, int difficulty) :
+            taskId(taskId), //full constructor
+            description(description),
+            uncertainty(uncertainty),
+            difficulty(difficulty) {}
 };
+
+/*function declaration*/
 
 void printToOutputFile(string textToPut, ofstream &file, bool newLine);
 
@@ -115,14 +122,15 @@ long getWorkerByWorkerId(long id);
 
 void checkFileAndOutput(ofstream &file);
 
-int calculateAveragePerformance(int mean, int standardDeviation,int MAX_ATTEMPTS);
+int calculateAveragePerformance(int mean, int standardDeviation, int MAX_ATTEMPTS);
 
 int calculateMean(int ability, int difficulty);
 
 int calculateTaskStandardDeviation(int uncertainty, int variability);
 
 void printTaskStats(int currentTaskNumber, ofstream &outfile);
-void printWorkerStats(int currentTaskNumber,long foundWorkerId, int a, ofstream &outfile, int averageScore);
+
+void printWorkerStats(int currentTaskNumber, long foundWorkerId, int a, ofstream &outfile, int averageScore);
 
 
 

@@ -3,8 +3,8 @@ Pre-Logic status check
 Tasks.txt read successfully
 Workers.txt read successfully
 --------------------
-Total Tasks populated | count : 10
-Total Workers populated | count : 11
+Total Tasks populated   |count : 10
+Total Workers populated |count : 11
 ====================
 --------------------
 BEGIN OUTSOURCING PROCESS
@@ -18,7 +18,7 @@ Worker count       : 3
 Workers            : 7,0,8
 - - - - - - - - - - - - - - - -  START TRIAL - - - - - - - - - - - - - - - - 
 Trial : Worker -> 7 (Young)
-Young's (7) average performance is 60
+Young's (7) average performance is 62
 Assignment of Task 1 to Worker 7 is successful
 - - - - - - - - - - - - - - - -  END TRIAL - - - - - - - - - - - - - - - - 
 ==================== NEW TASK ====================
@@ -30,11 +30,11 @@ Worker count       : 3
 Workers            : 8,1,3
 - - - - - - - - - - - - - - - -  START TRIAL - - - - - - - - - - - - - - - - 
 Trial : Worker -> 8 (Linda)
-Linda's (8) average performance is 32
+Linda's (8) average performance is 35
 Worker 8 fails Task 2
 -----
 Trial : Worker -> 1 (Sam)
-Sam's (1) average performance is 82
+Sam's (1) average performance is 77
 Assignment of Task 2 to Worker 1 is successful
 - - - - - - - - - - - - - - - -  END TRIAL - - - - - - - - - - - - - - - - 
 ==================== NEW TASK ====================
@@ -58,15 +58,15 @@ Worker count       : 3
 Workers            : 2,8,5
 - - - - - - - - - - - - - - - -  START TRIAL - - - - - - - - - - - - - - - - 
 Trial : Worker -> 2 (Tommy)
-Tommy's (2) average performance is 44
+Tommy's (2) average performance is 47
 Worker 2 fails Task 4
 -----
 Trial : Worker -> 8 (Linda)
-Linda's (8) average performance is 27
+Linda's (8) average performance is 26
 Worker 8 fails Task 4
 -----
 Trial : Worker -> 5 (Hellen)
-Hellen's (5) average performance is 29
+Hellen's (5) average performance is 31
 Worker 5 fails Task 4
  !! Task Assignment for task 4 has failed !! 
 - - - - - - - - - - - - - - - -  END TRIAL - - - - - - - - - - - - - - - - 
@@ -79,11 +79,11 @@ Worker count       : 3
 Workers            : 0,1,6
 - - - - - - - - - - - - - - - -  START TRIAL - - - - - - - - - - - - - - - - 
 Trial : Worker -> 0 (Peter)
-Peter's (0) average performance is 45
+Peter's (0) average performance is 46
 Worker 0 fails Task 5
 -----
 Trial : Worker -> 1 (Sam)
-Sam's (1) average performance is 80
+Sam's (1) average performance is 84
 Assignment of Task 5 to Worker 1 is successful
 - - - - - - - - - - - - - - - -  END TRIAL - - - - - - - - - - - - - - - - 
 ==================== NEW TASK ====================
@@ -95,7 +95,7 @@ Worker count       : 2
 Workers            : 3,9
 - - - - - - - - - - - - - - - -  START TRIAL - - - - - - - - - - - - - - - - 
 Trial : Worker -> 3 (James)
-James's (3) average performance is 74
+James's (3) average performance is 73
 Assignment of Task 6 to Worker 3 is successful
 - - - - - - - - - - - - - - - -  END TRIAL - - - - - - - - - - - - - - - - 
 ==================== NEW TASK ====================
@@ -107,7 +107,7 @@ Worker count       : 4
 Workers            : 9,5,6,3
 - - - - - - - - - - - - - - - -  START TRIAL - - - - - - - - - - - - - - - - 
 Trial : Worker -> 9 (Ryan)
-Ryan's (9) average performance is 82
+Ryan's (9) average performance is 80
 Assignment of Task 7 to Worker 9 is successful
 - - - - - - - - - - - - - - - -  END TRIAL - - - - - - - - - - - - - - - - 
 ==================== NEW TASK ====================
@@ -119,7 +119,7 @@ Worker count       : 3
 Workers            : 1,2,4
 - - - - - - - - - - - - - - - -  START TRIAL - - - - - - - - - - - - - - - - 
 Trial : Worker -> 1 (Sam)
-Sam's (1) average performance is 77
+Sam's (1) average performance is 83
 Assignment of Task 8 to Worker 1 is successful
 - - - - - - - - - - - - - - - -  END TRIAL - - - - - - - - - - - - - - - - 
 ==================== NEW TASK ====================
@@ -135,7 +135,7 @@ Peter's (0) average performance is 37
 Worker 0 fails Task 9
 -----
 Trial : Worker -> 3 (James)
-James's (3) average performance is 62
+James's (3) average performance is 61
 Assignment of Task 9 to Worker 3 is successful
 - - - - - - - - - - - - - - - -  END TRIAL - - - - - - - - - - - - - - - - 
 ==================== NEW TASK ====================
@@ -147,7 +147,7 @@ Worker count       : 4
 Workers            : 2,1,7,5
 - - - - - - - - - - - - - - - -  START TRIAL - - - - - - - - - - - - - - - - 
 Trial : Worker -> 2 (Tommy)
-Tommy's (2) average performance is 61
+Tommy's (2) average performance is 60
 Assignment of Task 10 to Worker 2 is successful
 - - - - - - - - - - - - - - - -  END TRIAL - - - - - - - - - - - - - - - - 
 ====================
